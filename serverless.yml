@@ -1,0 +1,18 @@
+service: lambda-mongodb
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  getData:
+    handler: handler.getData
+    vpc:
+      securityGroupIds:
+        - sg-03211fc07e9221ac2
+      subnetIds:
+        - subnet-0e4db27507900c967
+    events:
+      - http:
+          path: data
+          method: get
